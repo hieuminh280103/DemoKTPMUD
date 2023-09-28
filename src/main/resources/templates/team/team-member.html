@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center"><a th:href="@{/}" class="btn btn-info">Trang chủ</a></h2>
+    <h3 class="text-center">Danh sách các member của nhóm : <span th:text="${team.name}"></span></h3>
+    <hr/>
+    <table class="table table-bordered table-striped">
+        <thead class="table-info">
+        <tr>
+            <td>STT</td>
+            <td>MSSV</td>
+            <td>Họ</td>
+            <td>Tên</td>
+            <td>SĐT</td>
+            <td>Giới tính</td>
+            <td>Ngày sinh</td>
+            <td>Địa chỉ</td>
+            <td>Sở thích</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact : ${contacts}">
+            <td th:text="${contactStat.index+1}"></td>
+            <td th:text="${contact.id}"></td>
+            <td th:text="${contact.firstName}"></td>
+            <td th:text="${contact.lastName}"></td>
+            <td th:text="${contact.phoneNumber}"></td>
+            <td th:text="${contact.gender}"></td>
+            <td th:text="${contact.date}"></td>
+            <td th:text="${contact.address}"></td>
+            <td th:text="${contact.hobby}"></td>
+            <td >
+                <a th:href="@{/contact/delete(id=${contact.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Bạn có chắc chắn xóa member này không ?')">
+                    Xóa
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--Bootstrap-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

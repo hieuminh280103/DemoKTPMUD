@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Member</title>
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center"><a th:href="@{/}" class="btn btn-info">Trang chủ</a></h2>
+    <h3 class="text-center">TẠO MEMBER</h3>
+    <hr/>
+<!--    <div th:if="${success}" class="alert alert-success">-->
+<!--        <span th:text="${success}"></span>-->
+<!--        <a th:href="@{/}">Quay lại trang chủ</a>-->
+<!--    </div>-->
+    <form action="#" th:action="@{/contact/save}" th:object="${contact}" method="POST" >
+        <!--        ,idStaff=${user.staff.id},idInformation=${user.staff.information.id}-->
+        <table>
+            <tr>
+                <td>MSSV</td>
+                <td><input type="text" th:field="*{id}" placeholder="Nhập MSSV" required
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td>Họ</td>
+                <td><input type="text" th:field="*{firstName}" placeholder="Nhập họ"
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td>Tên</td>
+                <td><input type="text" th:field="*{lastName}" placeholder="Nhập tên"
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td>SĐT</td>
+                <td>
+                    <input type="tel" th:field="*{phoneNumber}" placeholder="Nhập SĐT"
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td>Giới tính</td>
+                <td>
+                    <input type="text" th:field="*{gender}" placeholder="Nhập giới tính"
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td>Ngày sinh</td>
+                <td>
+                    <input type="date" th:field="*{date}" placeholder="Nhập ngày sinh"
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td>Địa chỉ</td>
+                <td>
+                    <input type="text" th:field="*{address}" placeholder="Nhập địa chỉ"
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td>Sở thích</td>
+                <td>
+                    <input type="text" th:field="*{hobby}" placeholder="Nhập sở thích"
+                           class="form-control w-100 mb-2"></td>
+            </tr>
+            <tr>
+                <td><label for="team">Nhóm</label></td>
+                <td>
+<!--                    <input type="number" th:text="${team_name}" placeholder="Nhập id nhóm"-->
+<!--                           class="form-control w-100 mb-2"></td>-->
+                    <input list="teams" th:field="*{team_name}" name="team" id="team">
+                    <datalist id="teams">
+                        <option th:each="team : ${teams}" th:text="${team.name}" th:value="${team.name}">
+                    </datalist>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-success col-2">Lưu</button>
+    </form>
+</div>
+<!--Bootstrap-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
